@@ -54,8 +54,15 @@ float *criarPorcentagens(int *histograma) {
 
   float *porcentagens = calloc(sizeof(int), tamanho_porcentagens);
 
+  int nums = 0;
   for (int i = 0; i < tamanho_porcentagens; i++) {
-    porcentagens[i] = histograma[i + 2] * 100 / tamanho_porcentagens;
+    if (histograma[i + 2] > 0) {
+      nums += histograma[i + 2];
+    }
+  }
+
+  for (int i = 0; i < tamanho_porcentagens; i++) {
+    porcentagens[i] = histograma[i + 2] * 100 / nums;
   }
 
   return porcentagens;

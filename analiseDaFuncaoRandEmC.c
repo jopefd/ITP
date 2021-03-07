@@ -29,21 +29,13 @@ int *criarHistograma(int *valores) {
   histograma[0] = valores[1];
   histograma[1] = valores[2];
 
-  int num = 0;
-  for (int i = 2; i < tamanho_histograma; i++) {
-    if (i == 2) {
-      num = histograma[0];
-    } else if (i == tamanho_histograma - 1) {
-      num = histograma[1];
-    } else {
-      num = histograma[0] + i - 2;
-    }
-
-    for (int j = 3; j < tamanho_valores; j++) {
-      if (valores[j] == num) {
-        histograma[i]++;
+  for (int i = 0; i <= tamanho_histograma - 2; i++) {
+    for (int j = 0; j < tamanho_valores - 3; j++) {
+      if (valores[j + 3] == histograma[0] + i) {
+        histograma[i + 2]++;
       }
     }
+    printf("%i\n", histograma[i + 2]);
   }
 
   return histograma;

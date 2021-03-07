@@ -13,7 +13,7 @@ int *criarVetorAleatorio(int tamanho, int minimo, int maximo) {
   vetor[1] = minimo;
   vetor[2] = maximo;
 
-  for (int i = 3; i < tamanho; i++) {
+  for (int i = 3; i < tamanho + 3; i++) {
     vetor[i] = rand_int_range(minimo, maximo);
   }
 
@@ -21,7 +21,7 @@ int *criarVetorAleatorio(int tamanho, int minimo, int maximo) {
 }
 
 int *criarHistograma(int *valores) {
-  int tamanho_valores = valores[0];
+  int tamanho_valores = valores[0] + 3;
   int tamanho_histograma = valores[2] - valores[1] + 2;
 
   int *histograma = calloc(sizeof(int), tamanho_histograma);

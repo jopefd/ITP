@@ -35,19 +35,18 @@ int *criarHistograma(int *valores) {
         histograma[i + 2]++;
       }
     }
-    printf("%i\n", histograma[i + 2]);
   }
 
   return histograma;
 }
 
 float *criarPorcentagens(int *histograma) {
-  int tamanho_porcentagens = histograma[1] - histograma[0];
+  int tamanho_porcentagens = histograma[1] - histograma[0] + 2;
 
   float *porcentagens = calloc(sizeof(int), tamanho_porcentagens);
 
   int nums = 0;
-  for (int i = 0; i < tamanho_porcentagens; i++) {
+  for (int i = 0; i < tamanho_porcentagens - 1; i++) {
     if (histograma[i + 2] > 0) {
       nums += histograma[i + 2];
     }

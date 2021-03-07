@@ -69,7 +69,7 @@ void imprimePorcentagens(float *porcentagens, int *histograma) {
   printf("Valor |Qtdade |Porcent\n");
 
   for (int i = 0; i <= tamanho; i++) {
-    printf("%i |%i |%.2f%%\n", minimo, histograma[0], porcentagens[i]);
+    printf("%i |%i |%.2f%%\n", minimo + i, histograma[i + 2], porcentagens[i]);
   }
 }
 

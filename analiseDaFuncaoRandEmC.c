@@ -36,7 +36,7 @@ int *criarHistograma(int *valores) {
     } else if (i == tamanho_histograma - 1) {
       num = histograma[1];
     } else {
-      num = histograma[0] + i - 1;
+      num = histograma[0] + i - 2;
     }
 
     for (int j = 3; j < tamanho_valores; j++) {
@@ -55,13 +55,7 @@ float *criarPorcentagens(int *histograma) {
   float *porcentagens = calloc(sizeof(int), tamanho_porcentagens);
 
   for (int i = 0; i < tamanho_porcentagens; i++) {
-    if (i == 0) {
-      porcentagens[0] = histograma[0] / tamanho_porcentagens;
-    } else if (i == 1) {
-      porcentagens[tamanho_porcentagens-1] = histograma[1] / tamanho_porcentagens;
-    } else {
-      porcentagens[i] = (histograma[0] + i - 1) / tamanho_porcentagens;
-    }
+    porcentagens[i] = histograma[i + 2] * 100 / tamanho_porcentagens;
   }
 
   return porcentagens;

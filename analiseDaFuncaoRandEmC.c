@@ -21,16 +21,18 @@ int *criarVetorAleatorio(int tamanho, int minimo, int maximo) {
 }
 
 int *criarHistograma(int *valores) {
-  int tamanho_valores = valores[0] + 3;
-  int tamanho_histograma = valores[2] - valores[1] + 2;
+  int tamanho_valores = valores[0];
+  int tamanho_valores_total = tamanho_valores + 3;
+  int tamanho_histograma = valores[2] - valores[1] + 1;
+  int tamanho_histograma_total = tamanho_histograma + 2;
 
-  int *histograma = calloc(sizeof(int), tamanho_histograma);
+  int *histograma = calloc(sizeof(int), tamanho_histograma_total);
 
   histograma[0] = valores[1];
   histograma[1] = valores[2];
 
-  for (int i = 0; i <= tamanho_histograma - 2; i++) {
-    for (int j = 0; j < tamanho_valores - 3; j++) {
+  for (int i = 0; i < tamanho_histograma; i++) {
+    for (int j = 0; j < tamanho_valores; j++) {
       if (valores[j + 3] == histograma[0] + i) {
         histograma[i + 2]++;
       }
@@ -41,21 +43,22 @@ int *criarHistograma(int *valores) {
 }
 
 float *criarPorcentagens(int *histograma) {
-  int tamanho_porcentagens = histograma[1] - histograma[0];
+  int tamanho_porcentagens = histograma[1] - histograma[0] + 1;
   int tamanho_histograma = histograma[1] - histograma[0] + 2;
   // printf("%i", tamanho_porcentagens)
 
   float *porcentagens = calloc(sizeof(int), tamanho_porcentagens);
 
   int nums = 0;
-  for (int i = 0; i < tamanho_histograma - 1; i++) {
+  for (int i = 0; i < tamanho_histograma - 1; i++) { // from 0 to 15
     if (histograma[i + 2] > 0) {
       nums += histograma[i + 2];
     }
   }
 
-  for (int i = 0; i < tamanho_porcentagens; i++) {
+  for (int i = 0; i < tamanho_porcentagens; i++) { // from 0 to 15
     porcentagens[i] = histograma[i + 2] * 100 / nums;
+    // printf("%f\n", porcentagens[i]);
   }
 
   return porcentagens;

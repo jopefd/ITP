@@ -7,7 +7,7 @@ int rand_int_range(int min, int max){
 }
 
 int *criarVetorAleatorio(int tamanho, int minimo, int maximo) {
-  int *vetor = malloc(tamanho * sizeof(int));
+  int *vetor = malloc((tamanho + 3) * sizeof(int));
   
   vetor[0] = tamanho;
   vetor[1] = minimo;
@@ -22,7 +22,7 @@ int *criarVetorAleatorio(int tamanho, int minimo, int maximo) {
 
 int *criarHistograma(int *valores) {
   int tamanho_valores = valores[0];
-  int tamanho_histograma = valores[2] - valores[1];
+  int tamanho_histograma = valores[2] - valores[1] + 2;
 
   int *histograma = calloc(sizeof(int), tamanho_histograma);
 
@@ -30,10 +30,10 @@ int *criarHistograma(int *valores) {
   histograma[1] = valores[2];
 
   int num = 0;
-  for (int i = 0; i < tamanho_histograma; i++) {
-    if (i == 0) {
+  for (int i = 2; i < tamanho_histograma; i++) {
+    if (i == 2) {
       num = histograma[0];
-    } else if (i == 1) {
+    } else if (i == tamanho_histograma - 1) {
       num = histograma[1];
     } else {
       num = histograma[0] + i - 1;
@@ -50,17 +50,17 @@ int *criarHistograma(int *valores) {
 }
 
 float *criarPorcentagens(int *histograma) {
-  int tamanho = histograma[1] - histograma[0];
+  int tamanho_porcentagens = histograma[1] - histograma[0];
 
-  float *porcentagens = calloc(sizeof(int), tamanho);
+  float *porcentagens = calloc(sizeof(int), tamanho_porcentagens);
 
-  for (int i = 0; i < tamanho; i++) {
+  for (int i = 0; i < tamanho_porcentagens; i++) {
     if (i == 0) {
-      porcentagens[0] = histograma[0] / tamanho;
+      porcentagens[0] = histograma[0] / tamanho_porcentagens;
     } else if (i == 1) {
-      porcentagens[tamanho-1] = histograma[1] / tamanho;
+      porcentagens[tamanho_porcentagens-1] = histograma[1] / tamanho_porcentagens;
     } else {
-      porcentagens[i] = (histograma[0] + i - 1) / tamanho;
+      porcentagens[i] = (histograma[0] + i - 1) / tamanho_porcentagens;
     }
   }
 
@@ -74,13 +74,13 @@ void imprimePorcentagens(float *porcentagens, int *histograma) {
 
   printf("Valor |Qtdade |Porcent\n");
 
-  for (int i = 0; i < tamanho - 1; i++) {
+  for (int i = 0; i <= tamanho; i++) {
     if (i == 0) {
-      printf("%i |%i |%.2f%%\n", minimo, histograma[i], porcentagens[i]);
-    } else if (i == 1) {
-      printf("%i |%i |%.2f%%\n", maximo, histograma[i], porcentagens[i]);
+      printf("%i |%i |%.2f%%\n", minimo, histograma[0], porcentagens[i]);
+    } else if (i == tamanho) {
+      printf("%i |%i |%.2f%%\n", maximo, histograma[1], porcentagens[i]);
     } else {
-      printf("%i |%i |%.2f%%\n", i + minimo, histograma[i], porcentagens[i]);
+      printf("%i |%i |%.2f%%\n", i + minimo, histograma[i + 2], porcentagens[i]);
     }
   }
 }

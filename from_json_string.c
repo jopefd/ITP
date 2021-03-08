@@ -3,19 +3,32 @@
 #include <string.h>
 
 void format(char *string) {
-  char *num = strtok(string + 1, ",");
-
+  char *num = strtok(string + 1, ", ]");
+  
   int i = 0;
+
   while (num != NULL) {
-    string[i] = *num;
-    num = strtok(NULL, ", ");
+    if (strlen(num) >= 3) {
+      for (int j = 0; j < strlen(num); j++) {
+        string[i + j] = num[j];
+      }      
+      i = i + strlen(num) - 1;
+    } else {
+      string[i] = *num;
+    }    
+    num = strtok(NULL, ", ]");    
     i++;
   }
+
+  string[i] = '\0';
 }
 
-int verify_doubles() {
-
-  return;
+int check_doubles(char *string) {
+  if () {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 
 int *from_json_string_int(char string[201], int *ptrtam) {

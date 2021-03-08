@@ -24,11 +24,12 @@ void format(char *string) {
 }
 
 int check_doubles(char *string) {
-  if () {
-    return 1;
-  } else {
-    return 0;
+  for (int i = 0; i < strlen(string); i++) {
+    if (string[i] == '.')
+      return 1;
   }
+
+  return 0;
 }
 
 int *from_json_string_int(char string[201], int *ptrtam) {

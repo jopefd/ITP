@@ -48,7 +48,7 @@ double *from_json_string_double(char string[201], int *ptrtam) {
   double *vetor_double = malloc(strlen(string) * sizeof(int));
 
   for (int i = 0; i < strlen(string); i++) {
-    vetor_double[i] = atof(string[i]);
+    vetor_double[i] = atof(string + i);
   }
 
   *ptrtam = strlen(string);
@@ -61,7 +61,8 @@ int main(void) {
 
   scanf("%i", &n);
 
-  char *json_arrays = malloc(n * sizeof(char));
+  char **json_arrays = malloc(n * sizeof(char));
+  
   for (int i = 0; i < n; i++) {
     fgets(json_arrays[i], 202, );
      

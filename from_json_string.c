@@ -59,13 +59,28 @@ double *from_json_string_double(char string[201], int *ptrtam) {
 int main(void) {
   int n;
 
-  scanf("%i", &n);
+  scanf("%i\n", &n);
 
-  char **json_arrays = malloc(n * sizeof(char));
-  
   for (int i = 0; i < n; i++) {
-    fgets(json_arrays[i], 202, );
-     
+    char json_array[202];
+
+    fgets(json_array, 202, stdin);
+    printf("oi");
+    json_array[strlen(json_array) - 1] = '\0';
+
+    format(json_array);
+
+    int *ptrtam;
+
+    if (check_doubles(json_array) == 1) {
+      double *ptrd = from_json_string_double(json_array, ptrtam);
+      printf("%p", ptrd);
+      free(ptrd);
+    } else {
+      int *ptri = from_json_string_int(json_array, ptrtam);
+      printf("%i", *ptri);
+      free(ptri);
+    }
   }
 
   return 0;

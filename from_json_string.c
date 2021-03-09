@@ -2,88 +2,99 @@
 #include <stdlib.h>
 #include <string.h>
 
-int check_doubles(char *string) {
-  for (int i = 0; i < strlen(string); i++) {
-    if (string[i] == '.')
-      return 1;
+void clear_buffer() {
+  while (getchar() != '\n') {
+
+  }
+}
+
+char **format(char *json_array, int *array_length) {
+  char **pointer_string_numbers;
+  char *numbers;
+
+  pointer_string_numbers = malloc(strlen(json_array) * sizeof(char*));
+  numbers = strtok(json_array + 1, ", ]");
+
+  while (numbers != NULL) {
+    pointer_string_numbers[*array_length] = numbers;
+    (*array_length)++;
+    numbers = strtok(NULL, ", ]");
   }
 
+  return pointer_string_numbers;
+}
+
+int check_doubles(char *json_array) {
+  for (int i = 0; i < strlen(json_array); i++) {
+    if (json_array[i] == '.') {
+      return 1;
+    }
+  }
   return 0;
 }
 
-char** format(char *array_json) {
-  char** string_only_numbers;
-  char *number = strtok(array_json + 1, ", ]");
-  int i = 0;
-
-  string_only_numbers = malloc(strlen(array_json) * sizeof(char*));
-
-  while (number != NULL) {
-    string_only_numbers[i] = number;
-    number = strtok(NULL, ", ]");
-    i++;
-  }
-
-  string_only_numbers = realloc(string_only_numbers, (i - 1) * sizeof(char*));
+double* convert_to_double_array(char **pointer_string_numbers, int *array_length) {
+  double *double_array;
+  double_array = malloc(*array_length * sizeof(double));
   
-  return string_only_numbers;
-}
-
-double *from_json_string_double(char string[201], int *ptrtam) {
-  double *vetor_double = malloc(strlen(string) * sizeof(int));
-
-  for (int i = 0; i < strlen(string); i++) {
-    vetor_double[i] = atof(string + i);
+  for (int i = 0; i < *array_length; i++) {
+    double_array[i] = atof(pointer_string_numbers[i]);
   }
 
-  *ptrtam = strlen(string);
-
-  return vetor_double;
+  return double_array;
 }
 
-int *from_json_string_int(char string[201], int *ptrtam) {
-  int *vetor_int = malloc(strlen(string) * sizeof(int));
-
-  for (int i = 0; i < strlen(string); i++) {
-    vetor_int[i] = string[i] - '0';
+int* convert_to_int_array(char **pointer_string_numbers, int *array_length) {
+  int *int_array;
+  int_array = malloc(*array_length * sizeof(int));
+  
+  for (int i = 0; i < *array_length; i++) {
+    int_array[i] = atoi(pointer_string_numbers[i]);
   }
 
-  *ptrtam = strlen(string);
-
-  return vetor_int;
+  return int_array;
 }
+
 
 int main(void) {
-  // Ler um número N
-  int n, tam;
-  scanf("%i\n", &n);
+  int inputs = 0;
+  int array_length = 0;
+  char json_array[202];
+  char **pointer_string_numbers;
 
-  // Laço de N repetições
-  for (int i = 0; i < n; i++) {
-    // Ler array JSON
-    char json_array[202];
+  scanf("%i", &inputs);
+  clear_buffer();
+
+  for (int i = 0; i < inputs; i++) {
     fgets(json_array, 202, stdin);
     json_array[strlen(json_array) - 1] = '\0';
-    json_array = format()
 
-    // Converter array JSON
-    // Verificar se tem doubles
     if (check_doubles(json_array) == 1) {
-      double *ptrd = from_json_string_double(json_array, &tam);
+      pointer_string_numbers = format(json_array, &array_length);
+      double *double_array;
+      double_array = convert_to_double_array(pointer_string_numbers, &array_length);
+      for (int j = 0; j < array_length; j++) {
+        printf("%lf ", double_array[j]);
+      }
+      free(pointer_string_numbers);
+      free(double_array);
+    } else if (strlen(json_array) <= 2) {
+      printf("vetor vazio\n");
+      continue;
     } else {
-      int *ptri = from_json_string_int(json_array, &tam);
-      printf("%i", *ptri);
-      free(ptri);
+      pointer_string_numbers = format(json_array, &array_length);
+      int *int_array;
+      int_array = convert_to_int_array(pointer_string_numbers, &array_length);
+      for (int j = 0; j < array_length; j++) {
+        printf("%i ", int_array[j]);
+      }
+      free(pointer_string_numbers);
+      free(int_array);
     }
-        // Se sim tem, criar vetor de doubles
 
-        // Se não tem, criar vetor de inteiros
-
-    int *ptrtam;
-
+    printf("\n");
+    array_length = 0;
   }
-    // Imprimir array convertido
-
 
   return 0;
 }

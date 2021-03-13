@@ -4,35 +4,35 @@
 
 typedef struct {
   char *array;
-  unsigned int string_capacity;
-  unsigned int string_lenght;
+  unsigned int capacity;
+  unsigned int length;
 } string;
 
 void set_str(string *text, char *char_array) {
   if (strlen(char_array) % 16 > 0) {
-    text->string_capacity = 16 + strlen(char_array) - strlen(char_array) % 16;
+    text->capacity = 16 + strlen(char_array) - strlen(char_array) % 16;
   } else {
-    text->string_capacity = strlen(char_array);
+    text->capacity = strlen(char_array);
   }
 
-  printf("%u", text->string_capacity);
+  printf("%u", text->capacity);
 
-  text->array = malloc(text->string_capacity * sizeof(char));
+  text->array = malloc(text->capacity * sizeof(char));
 }
 
 void read_str(string *text) {
-  fgets(text->array, text->string_capacity, stdin);
+  fgets(text->array, text->capacity, stdin);
   text->array[strlen(text->array) - 1] = '\0';
 }
 
-void concat_str(string *string_1, string *string_2) {
-  strcat(string_1->array, string_2->array);
+void concat_str(string *text_1, string *text_2) {
+  strcat(text_1->array, text_2->array);
 }
 
 void clear_str(string *string) {
   free(string->array);
-  string->string_capacity = 0;
-  string->string_lenght = 0;
+  string->capacity = 0;
+  string->length = 0;
 }
 
 int main(void) {
@@ -46,7 +46,7 @@ int main(void) {
 //  concat_str(&greeting, &name);
 
 //  printf("%s\n", greeting.array);
-//  printf("%i %i\n", greeting.string_capacity, greeting.string_lenght);
+//  printf("%i %i\n", greeting.capacity, greeting.length);
   
 //  clear_str(&greeting);
 //  clear_str(&name);

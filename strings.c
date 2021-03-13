@@ -18,9 +18,9 @@ void set_str(string *text, char *char_array) {
   text->array = malloc(text->string_capacity * sizeof(char));
 }
 
-void read_str(char *string) {
-  fgets(string, strlen(string->) + 1, stdin);
-  string[strlen(string) - 1] = '\0';
+void read_str(string *text) {
+  fgets(text->array, text->string_capacity, stdin);
+  text->array[strlen(text->array) - 1] = '\0';
 }
 
 void concat_str(char *string_1, char *string_2) {

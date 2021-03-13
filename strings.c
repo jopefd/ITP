@@ -8,21 +8,18 @@ typedef struct {
   unsigned int string_lenght;
 } string;
 
-void set_str(string str.array, char *char_array) {
-  char *string;
-  unsigned int string_lenght;
-  
-  if (strlen(array) % 16 > 0) {
-    string_lenght = 16 - (strlen(array) % 16);
+void set_str(string *text, char *char_array) {
+  if (strlen(char_array) % 16 > 0) {
+    text->string_capacity = 16 - (strlen(char_array) % 16);
   } else {
-    string_lenght = strlen(array);
+    text->string_capacity = strlen(char_array);
   }
 
-  string = malloc(string_lenght * sizeof(char));
+  text->array = malloc(text->string_capacity * sizeof(char));
 }
 
 void read_str(char *string) {
-  fgets(string, strlen(string) + 1, stdin);
+  fgets(string, strlen(string->) + 1, stdin);
   string[strlen(string) - 1] = '\0';
 }
 

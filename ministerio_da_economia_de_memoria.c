@@ -16,7 +16,6 @@ char **texto_separado(char *string, int *quantidade_texto) {
     contador++;
     texto = strtok(NULL," ");
   }
-    printf("%lu\n", sizeof(char*));
 
   texto_separado = realloc(texto_separado, contador * sizeof(char*));
   
@@ -25,14 +24,14 @@ char **texto_separado(char *string, int *quantidade_texto) {
   return texto_separado;
 }
 
-int falta_checar(int *checagem, int *tamanho_texto) {
+int todos_checados(int *checagem, int *tamanho_texto) {
   for (int i = 0; i < *tamanho_texto; i++) {
-    if (checagem[i] != 1) {
-      return 1;
+    if (checagem[i] == 0) {
+      return 0;
     }
   }
 
-  return 0;
+  return 1;
 }
 
 char **texto_embaralhado(char **texto, int *tamanho_texto) {
@@ -41,21 +40,37 @@ char **texto_embaralhado(char **texto, int *tamanho_texto) {
   int contador;
   int checagem[*tamanho_texto];
 
-  while (falta_checar(checagem, tamanho_texto)) {
+  contador = 0;
+  memset(checagem, 0, *tamanho_texto * sizeof(int));
+  texto_embaralhado = malloc(*tamanho_texto * sizeof(char*));
+
+  contador = 0;
+  while (todos_checados(checagem, tamanho_texto) == 0) {
     numero_sorteado = rand();
     texto_embaralhado[contador] = texto[numero_sorteado % *tamanho_texto];
     checagem[numero_sorteado % *tamanho_texto]++;
     contador++;
+    if (contador >= *tamanho_texto) {
+      texto_embaralhado = realloc(texto_embaralhado, (contador + 1) * sizeof(char*));
+    }
   }
+
+  *tamanho_texto = contador;
 
   return texto_embaralhado;
 }
 
 char *texto_unido(char **vetor_strings, int *tamanho_vetor) {
   char *texto_unido;
+  int tamanho_final;
 
-  *tamanho_vetor += *tamanho_vetor - 1;
-  texto_unido = malloc(*tamanho_vetor * sizeof(char));
+  tamanho_final = 0;
+  for (int i = 0; i < *tamanho_vetor; i++) {
+    tamanho_final += strlen(vetor_strings[i]);
+  }
+  tamanho_final += *tamanho_vetor - 1;
+
+  texto_unido = malloc(tamanho_final * sizeof(char));
   texto_unido[0] = '\0';
 
   for (int i = 0; i < *tamanho_vetor; i++) {
@@ -76,13 +91,13 @@ int main(void) {
   int tamanho_msg;
 
   fgets(mensagem, 502, stdin);
-  mensagem[strlen(mensagem) - 1] = '\0';
 
   srand(5940);
 
   msg_separada = texto_separado(mensagem, &tamanho_msg);
-  // msg_embaralhada = texto_embaralhado(msg_separada, &tamanho_msg);
-  // msg_unida = texto_unido(msg_embaralhada, &tamanho_msg);
+  msg_embaralhada = texto_embaralhado(msg_separada, &tamanho_msg);
+  msg_unida = texto_unido(msg_embaralhada, &tamanho_msg);
 
-  // printf("%s", msg_unida);
+  printf("%s", msg_unida);
 }
+

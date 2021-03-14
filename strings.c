@@ -15,14 +15,15 @@ void set_str(string *text, char *char_array) {
     text->capacity = strlen(char_array);
   }
 
-  printf("%u", text->capacity);
-
   text->array = malloc(text->capacity * sizeof(char));
+  strcpy(text->array, char_array);
 }
 
 void read_str(string *text) {
-  fgets(text->array, text->capacity, stdin);
-  text->array[strlen(text->array) - 1] = '\0';
+  text->capacity = malloc(16 * sizeof(char));
+  printf("%u", text->capacity);
+//  fgets(text->array, text->capacity, stdin);
+//  text->array[strlen(text->array) - 1] = '\0';
 }
 
 void concat_str(string *text_1, string *text_2) {
@@ -40,9 +41,7 @@ int main(void) {
   string name;
 
   set_str(&greeting, "Oisjsjsjsjsjsjsjsj ");
-  printf("oif");
-  printf("%s", greeting.array);
-  //read_str(&name);
+  read_str(&name);
 //  concat_str(&greeting, &name);
 
 //  printf("%s\n", greeting.array);

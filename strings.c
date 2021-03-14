@@ -20,10 +20,21 @@ void set_str(string *text, char *char_array) {
 }
 
 void read_str(string *text) {
-  text->capacity = malloc(16 * sizeof(char));
-  printf("%u", text->capacity);
-//  fgets(text->array, text->capacity, stdin);
-//  text->array[strlen(text->array) - 1] = '\0';
+  int counter = 0;
+  do {
+    counter++;
+    text->capacity = 16 * counter;
+
+    if (counter == 1) {
+      text->array = malloc(text->capacity * sizeof(char));
+    } else {
+      text->array = realloc(text->array, text->capacity);
+    }
+
+    text->array = malloc(text->capacity * sizeof(char));
+    fgets(text->array, text->capacity, stdin);
+    printf("oi");
+  } while (text->array[strlen(text->array) - 1] != '\n');
 }
 
 void concat_str(string *text_1, string *text_2) {

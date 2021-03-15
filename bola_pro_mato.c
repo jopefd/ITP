@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct {
+  char name[202];
+  unsigned int victories;
+  unsigned int ties;
+  unsigned int defeats;
+  unsigned int home_goals;
+  unsigned int away_goals;
+} team;
+
 int main(void) {
   unsigned int teams_quantity;
   scanf("%u", &teams_quantity);

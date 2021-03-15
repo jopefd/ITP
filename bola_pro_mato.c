@@ -10,7 +10,7 @@ typedef struct {
   unsigned int defeats;
   unsigned int home_goals;
   unsigned int away_goals;
-  unsigned int goal_difference;
+  int goal_difference;
 } team;
 
 int main(void) {
@@ -26,6 +26,16 @@ int main(void) {
     scanf("%u", &cartola[i].defeats);
     scanf("%u", &cartola[i].home_goals);
     scanf("%u", &cartola[i].away_goals);
+  }
+
+  for (int i = 0; i < teams_quantity; i++) {
+    ranking[i] = cartola[i];
+    for (int j = 0; j < teams_quantity; j++) {
+      if (cartola[j].points > ranking[i].points) {
+        ranking[i] = cartola[j];
+        continue;
+      }
+    }
   }
  
   printf("Nome| Pontos| Jogos| ");

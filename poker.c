@@ -8,10 +8,11 @@ typedef enum {
 } Suit;
 
 typedef enum {
-  Ace, Two, Three,
-  Four, Five, Six,
-  Seven, Eight, Nine,
-  Ten, Jack, Queen, King
+  Two, Three, Four,
+  Five, Six, Seven,
+  Eight, Nine, Ten,
+  Jack, Queen, King,
+  Ace
 } Value;
 
 typedef struct {

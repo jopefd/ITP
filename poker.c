@@ -1,5 +1,28 @@
 #include <stdio.h>
 
+typedef enum {
+  Diamonds,
+  Heart,
+  Spades,
+  Clubs
+} Suit;
+
+typedef enum {
+  Ace, Two, Three,
+  Four, Five, Six,
+  Seven, Eight, Nine,
+  Ten, Jack, Queen, King
+} Value;
+
+typedef struct {
+  Suit suit;
+  Value value;
+} Card;
+
+checkHand() {
+
+}
+
 int main() {
   Card hands[][5] = {
     { // Royal Flush
@@ -38,10 +61,10 @@ int main() {
   Card oponentCards[5];
 
   unsigned handIndex;
-  scanf("%u", & handIndex);
+  scanf("%u", &handIndex);
   for (int i = 0; i < 5; i++) {
     myCards[i] = hands[handIndex][i];
-    scanf("%u %u", & oponentCards[i].suit, & oponentCards[i].value);
+    scanf("%u %u", &oponentCards[i].suit, &oponentCards[i].value);
   }
   PokerHand myHand = checkHand(myCards);
   PokerHand oponentHand = checkHand(oponentCards);

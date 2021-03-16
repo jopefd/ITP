@@ -20,8 +20,25 @@ typedef struct {
   Value value;
 } Card;
 
-checkHand() {
+typedef enum {
+  Royal Flush,
+  Straight flush,
+  Four of a kind,
+  Full house,
+  Flush,
+  Straight,
+  Three of a kind,
+  Two pair,
+  Pair,
+  High Card
+} PokerHand;
 
+PokerHand checkHand(Card cards[5]) {
+  for (unsigned int i = 5; i >= 0; i--) {
+    for (unsigned int j = 5; j >= 0; j--) {
+        
+    }
+  }
 }
 
 int main() {
@@ -71,21 +88,21 @@ int main() {
   PokerHand oponentHand = checkHand(oponentCards);
   if (myHand > oponentHand) {
     switch (myHand) {
-    case RoyalFlush:
-      printf("É... simplesmente não tinha como me bater!\n");
-      break;
-    case StraightFlush:
-    case FourOfAKind:
-    case FullHouse:
-      printf("Já era! Você não tinha chance!\n");
-      break;
-    case Flush:
-    case Straight:
-    case ThreeOfAKind:
-      printf("É boy! Quem sabe da próxima vez...\n");
-      break;
-    default:
-      printf("Tive sorte!\n");
+      case RoyalFlush:
+        printf("É... simplesmente não tinha como me bater!\n");
+        break;
+      case StraightFlush:
+      case FourOfAKind:
+      case FullHouse:
+        printf("Já era! Você não tinha chance!\n");
+        break;
+      case Flush:
+      case Straight:
+      case ThreeOfAKind:
+        printf("É boy! Quem sabe da próxima vez...\n");
+        break;
+      default:
+        printf("Tive sorte!\n");
     }
   } else if (oponentHand > myHand) {
     printf("Não valeu! Cê tá roubando!!!\n");

@@ -25,12 +25,12 @@ void read_teams_results(team *some_team) {
     input = realloc(input, input_capacity * sizeof(char));
   }
 
-  some_team->name = strtok(NULL, ";");
-  some_team->victories = strtok(NULL, " ");
-  some_team->ties = strtok(NULL, " ");
-  some_team->defeats = strtok(NULL, " ");
-  some_team->home_goals = strtok(NULL, " ");
-  some_team->away_goals = strtok(NULL, " ");
+  strcpy(some_team, strtok(input, ";"));
+  some_team->victories = (unsigned int)atoi(strtok(NULL, " "));
+  some_team->ties = (unsigned int)atoi(strtok(NULL, " "));
+  some_team->defeats = (unsigned int)atoi(strtok(NULL, " "));
+  some_team->home_goals = (unsigned int)atoi(strtok(NULL, " "));
+  some_team->away_goals = (unsigned int)atoi(strtok(NULL, " "));
 }
 
 int main(void) {

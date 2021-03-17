@@ -66,9 +66,8 @@ PokerHand checkHand(Card cards[5]) {
     return FourOfAKind;
   } else if (cards[0].value == cards[1].value &&
              cards[1].value == cards[2].value &&
-             cards[2].value != cards[3].value &&
-             cards[2].value != cards[4].value &&
-             cards[3].value == cards[4].value) {
+             cards[3].value == cards[4].value &&
+             cards[2].value != cards[3].value) {
     return FullHouse; 
   } else if (cards[0].suit == cards[1].suit &&
              cards[1].suit == cards[2].suit &&    

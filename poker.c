@@ -77,13 +77,15 @@ PokerHand checkHand(Card cards[5]) {
              cards[2].value != cards[3].value + 1 &&    
              cards[3].value != cards[4].value + 1) {
     return Flush;           
-  } else if (cards[0].suit != cards[1].suit &&
-             cards[1].suit != cards[2].suit &&    
-             cards[3].suit != cards[4].suit &&    
+  } else if (   
              cards[0].value == cards[1].value + 1 &&    
              cards[1].value == cards[2].value + 1 &&    
              cards[2].value == cards[3].value + 1 &&    
-             cards[3].value == cards[4].value + 1) {
+             cards[3].value == cards[4].value + 1 &&
+             cards[0].suit != cards[1].suit &&
+             cards[1].suit != cards[2].suit &&    
+             cards[2].suit != cards[3].suit &&    
+             cards[3].suit != cards[4].suit)  {
     return Straight;           
   } else if ((cards[0].value == cards[1].value &&    
              cards[1].value == cards[2].value) ||    

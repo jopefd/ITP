@@ -21,16 +21,16 @@ typedef struct {
 } Card;
 
 typedef enum {
-  Royal Flush,
-  Straight flush,
-  Four of a kind,
-  Full house,
+  RoyalFlush,
+  StraightFlush,
+  FourOfAKind,
+  FullHouse,
   Flush,
   Straight,
-  Three of a kind,
-  Two pair,
+  ThreeOfAKind,
+  TwoPair,
   Pair,
-  High Card
+  HighCard
 } PokerHand;
 
 PokerHand checkHand(Card cards[5]) {

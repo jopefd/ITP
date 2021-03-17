@@ -34,9 +34,14 @@ typedef enum {
 } PokerHand;
 
 PokerHand checkHand(Card cards[5]) {
-  for (unsigned int i = 5; i >= 0; i--) {
-    for (unsigned int j = 5; j >= 0; j--) {
-        
+  Card changer;
+  for (unsigned int i = 0; i < 5; i++) {
+    for (unsigned int j = i + 1; j <= 5; j++) {
+      if (cards[i] < cards[j]) {
+        changer = cards[j];
+        cards[i] = cards[j];
+        cards[j] = changer;
+      }
     }
   }
 }

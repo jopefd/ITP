@@ -49,7 +49,10 @@ PokerHand checkHand(Card cards[5]) {
       cards[1].value == King &&
       cards[2].value == Queen &&
       cards[3].value == Jack &&
-      cards[4].value == Ten) {
+      cards[4].value == Ten &&
+      cards[0].suit == cards[1].suit &&
+      cards[1].suit == cards[2].suit &&
+      cards[3].suit == cards[4].suit) {
     return RoyalFlush;
   } else if (cards[0].value == cards[1].value &&
              cards[1].value == cards[2].value &&

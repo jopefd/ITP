@@ -44,8 +44,67 @@ PokerHand checkHand(Card cards[5]) {
       }
     }
   }
-  printf("%u", cards[0].value);
-  return cards[0].value;
+
+  if (cards[0].value == Ace &&
+      cards[1].value == King &&
+      cards[2].value == Queen &&
+      cards[3].value == Jack &&
+      cards[4].value == Ten) {
+    return RoyalFlush;
+  } else if (cards[0].value == cards[1].value &&
+             cards[1].value == cards[2].value &&
+             cards[2].value != cards[3].value &&
+             cards[2].value != cards[4].value) {
+    return StraightFlush;
+  } else if (cards[0].value == cards[1].value &&
+             cards[1].value == cards[2].value &&
+             cards[2].value != cards[3].value &&
+             cards[2].value != cards[4].value) {
+    return FourOfAKind;
+  } else if (cards[0].value == cards[1].value &&
+             cards[1].value == cards[2].value &&
+             cards[2].value != cards[3].value &&
+             cards[2].value != cards[4].value &&
+             cards[3].value == cards[4].value) {
+    return FullHouse; 
+  } else if (cards[0].suit == cards[1].suit &&
+             cards[1].suit == cards[2].suit &&    
+             cards[3].suit == cards[4].suit &&    
+             cards[0].value != cards[1].value + 1 &&    
+             cards[1].value != cards[2].value + 1 &&    
+             cards[2].value != cards[3].value + 1 &&    
+             cards[3].value != cards[4].value + 1) {
+    return Flush;           
+  } else if (cards[0].suit != cards[1].suit &&
+             cards[1].suit != cards[2].suit &&    
+             cards[3].suit != cards[4].suit &&    
+             cards[0].value == cards[1].value + 1 &&    
+             cards[1].value == cards[2].value + 1 &&    
+             cards[2].value == cards[3].value + 1 &&    
+             cards[3].value == cards[4].value + 1) {
+    return Straight;           
+  } else if ((cards[0].value == cards[1].value &&    
+             cards[1].value == cards[2].value) ||    
+             (cards[1].value == cards[2].value &&
+             cards[2].value == cards[3].value) ||
+             (cards[2].value == cards[3].value &&
+             cards[3].value == cards[4].value)) {
+    return ThreeOfAKind;
+  } else if (cards[0].value == cards[1].value ||    
+             cards[1].value == cards[2].value ||
+             cards[2].value == cards[3].value ||
+             cards[3].value == cards[4].value) {
+    return TwoPair;
+  } else if ((cards[0].value == cards[1].value &&    
+             cards[2].value == cards[3].value &&
+             cards[0].value != cards[2].value) ||
+             (cards[1].value == cards[2].value &&
+             cards[3].value == cards[4].value &&
+             cards[1].value != cards[3].value)) {
+    return Pair;
+  }
+  
+  return HighCard;
 }
 
 int main() {

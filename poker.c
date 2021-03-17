@@ -8,7 +8,7 @@ typedef enum {
 } Suit;
 
 typedef enum {
-  Two, Three, Four,
+  Two = 2, Three, Four,
   Five, Six, Seven,
   Eight, Nine, Ten,
   Jack, Queen, King,
@@ -21,29 +21,31 @@ typedef struct {
 } Card;
 
 typedef enum {
-  RoyalFlush,
-  StraightFlush,
-  FourOfAKind,
-  FullHouse,
-  Flush,
-  Straight,
-  ThreeOfAKind,
-  TwoPair,
+  HighCard,
   Pair,
-  HighCard
+  TwoPair,
+  ThreeOfAKind = 8,
+  Straight,
+  Flush,
+  FullHouse,
+  FourOfAKind,
+  StraightFlush,
+  RoyalFlush
 } PokerHand;
 
 PokerHand checkHand(Card cards[5]) {
   Card changer;
   for (unsigned int i = 0; i < 5; i++) {
-    for (unsigned int j = i + 1; j <= 5; j++) {
+    for (unsigned int j = i; j < 5; j++) {
       if (cards[i].value < cards[j].value) {
-        changer = cards[j];
+        changer = cards[i];
         cards[i] = cards[j];
         cards[j] = changer;
       }
     }
   }
+  printf("%u", cards[0].value);
+  return cards[0].value;
 }
 
 int main() {
@@ -91,6 +93,7 @@ int main() {
   }
   PokerHand myHand = checkHand(myCards);
   PokerHand oponentHand = checkHand(oponentCards);
+  printf("%u %u %u\n", myHand, oponentHand, RoyalFlush);
   if (myHand > oponentHand) {
     switch (myHand) {
       case RoyalFlush:
@@ -118,4 +121,3 @@ int main() {
   }
   return 0;
 }
-

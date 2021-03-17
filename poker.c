@@ -37,7 +37,7 @@ PokerHand checkHand(Card cards[5]) {
   Card changer;
   for (unsigned int i = 0; i < 5; i++) {
     for (unsigned int j = i + 1; j <= 5; j++) {
-      if (cards[i] < cards[j]) {
+      if (cards[i].value < cards[j].value) {
         changer = cards[j];
         cards[i] = cards[j];
         cards[j] = changer;

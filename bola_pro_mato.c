@@ -13,6 +13,26 @@ typedef struct {
   int goal_difference;
 } team;
 
+void read_teams_results(team *some_team) {
+  unsigned int input_capacity;
+  char *input;
+  char *token;
+
+  input_capacity = 202; 
+  input = malloc(input_capacity * sizeof(char));
+  while (fgets(input, input_capacity, stdin) != NULL) {
+    input_capacity++;
+    input = realloc(input, input_capacity * sizeof(char));
+  }
+
+  some_team->name = strtok(NULL, ";");
+  some_team->victories = strtok(NULL, " ");
+  some_team->ties = strtok(NULL, " ");
+  some_team->defeats = strtok(NULL, " ");
+  some_team->home_goals = strtok(NULL, " ");
+  some_team->away_goals = strtok(NULL, " ");
+}
+
 int main(void) {
   unsigned int teams_quantity;
   team cartola[teams_quantity];
@@ -20,12 +40,7 @@ int main(void) {
 
   scanf("%u", &teams_quantity);
   for (int i = 0; i < teams_quantity; i++) {
-    fgets(cartola[i].name, 202, stdin);
-    scanf("%u", &cartola[i].victories);
-    scanf("%u", &cartola[i].ties);
-    scanf("%u", &cartola[i].defeats);
-    scanf("%u", &cartola[i].home_goals);
-    scanf("%u", &cartola[i].away_goals);
+    read_teams_results(&cartola[i]);
   }
 
   for (int i = 0; i < teams_quantity; i++) {

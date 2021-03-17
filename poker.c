@@ -54,10 +54,10 @@ PokerHand checkHand(Card cards[5]) {
       cards[1].suit == cards[2].suit &&
       cards[3].suit == cards[4].suit) {
     return RoyalFlush;
-  } else if (cards[0].value == cards[1].value &&
-             cards[1].value == cards[2].value &&
-             cards[2].value != cards[3].value &&
-             cards[2].value != cards[4].value) {
+  } else if (cards[0].suit == cards[1].suit &&
+             cards[1].suit == cards[2].suit &&
+             cards[2].suit == cards[3].suit &&
+             cards[3].suit == cards[4].suit) {
     return StraightFlush;
   } else if (cards[0].value == cards[1].value &&
              cards[1].value == cards[2].value &&

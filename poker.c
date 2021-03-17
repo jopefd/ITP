@@ -100,11 +100,21 @@ PokerHand checkHand(Card cards[5]) {
              cards[3].value == cards[4].value) {
     return TwoPair;
   } else if ((cards[0].value == cards[1].value &&    
-             cards[2].value == cards[3].value &&
-             cards[0].value != cards[2].value) ||
-             (cards[1].value == cards[2].value &&
-             cards[3].value == cards[4].value &&
-             cards[1].value != cards[3].value)) {
+              cards[0].value != cards[2].value &&
+              cards[0].value != cards[3].value &&
+              cards[0].value != cards[4].value) ||
+             (cards[1].value == cards[2].value &&    
+              cards[1].value != cards[0].value &&
+              cards[1].value != cards[3].value &&
+              cards[1].value != cards[4].value) ||
+             (cards[2].value == cards[3].value &&    
+              cards[2].value != cards[0].value &&
+              cards[2].value != cards[1].value &&
+              cards[2].value != cards[4].value) ||
+             (cards[3].value == cards[4].value &&    
+              cards[3].value != cards[0].value &&
+              cards[3].value != cards[1].value &&
+              cards[3].value != cards[2].value)) {
     return Pair;
   }
   

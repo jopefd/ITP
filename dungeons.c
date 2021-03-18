@@ -14,18 +14,29 @@ typedef struct {
   int atack;
 } Inimigo;
 
+typedef enum {
+  dinheiro,
+  cura,
+  escudo,
+  espinhos,
+  buraco,
+  ladrao
+} name_inputs;
+
 typedef struct {
-  enum name = {dinheiro, cura, escudo};
+  name_inputs name;
   int row;
   int column;
 } Tesouro;
 
 typedef struct {
-  enum name = {espinhos, buraco, ladrao};
+  name_inputs name;
   int row;
   int column;
 } Armadilha;
 
 int main(void) {
-  
+ Tesouro x;
+ x.name = 0;
+ printf("%i", x.name);
 }

@@ -7,6 +7,14 @@ typedef struct {
   int atack;
 } Jogador;
 
+
+typedef struct {
+  int row;
+  int column;
+  int life;
+  int atack;
+} Inimigo;
+
 int main(void) {
   
 }

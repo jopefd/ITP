@@ -1,6 +1,12 @@
 #include <stdio.h>
 
 typedef struct {
+  int enimies_quantity;
+  int treasures_quantity;
+  int traps_quantity;
+} Sala;
+
+typedef struct {
   int row;
   int column;
   int life;
@@ -17,26 +23,31 @@ typedef struct {
 typedef enum {
   dinheiro,
   cura,
-  escudo,
+  escudo
+} Tesouro_name;
+
+typedef enum {
   espinhos,
   buraco,
   ladrao
-} name_inputs;
+} Armadilha_name;
 
 typedef struct {
-  name_inputs name;
+  Tesouro_name name;
   int row;
   int column;
 } Tesouro;
 
 typedef struct {
-  name_inputs name;
+  Armadilha_name name;
   int row;
   int column;
 } Armadilha;
 
 int main(void) {
- Tesouro x;
- x.name = 0;
- printf("%i", x.name);
+  int n;
+  int m;
+  scanf("%i %i", &n, &m);
+
+
 }

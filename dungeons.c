@@ -10,14 +10,14 @@ typedef struct {
   int row;
   int column;
   int life;
-  int atack;
+  int attack;
 } Jogador;
 
 typedef struct {
   int row;
   int column;
   int life;
-  int atack;
+  int attack;
 } Inimigo;
 
 typedef enum {
@@ -48,6 +48,8 @@ int main(void) {
   int n;
   int m;
   scanf("%i %i", &n, &m);
+  Sala mapa[n * m];
 
-
+  Jogador player;
+  scanf("(%i %i) - %i %i"), player.row, player.column, player.life, player.attack);
 }

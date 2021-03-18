@@ -7,7 +7,6 @@ typedef struct {
   int atack;
 } Jogador;
 
-
 typedef struct {
   int row;
   int column;
@@ -20,6 +19,12 @@ typedef struct {
   int row;
   int column;
 } Tesouro;
+
+typedef struct {
+  enum name = {espinhos, buraco, ladrao};
+  int row;
+  int column;
+} Armadilha;
 
 int main(void) {
   

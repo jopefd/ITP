@@ -15,6 +15,12 @@ typedef struct {
   int atack;
 } Inimigo;
 
+typedef struct {
+  enum name = {dinheiro, cura, escudo};
+  int row;
+  int column;
+} Tesouro;
+
 int main(void) {
   
 }
